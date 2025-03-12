@@ -29,7 +29,7 @@ function M.setup(opts)
                 if vim.api.nvim_buf_get_text(args.buf, 0, 0, 0, 1, {})[1] == "" then
                     local lines = {}
                     for _, line in ipairs(def.value) do
-                        table.insert(lines, vim.fn.expandcmd(line, { errmsg = true }))
+                        table.insert(lines, line)
                     end
                     vim.api.nvim_buf_set_text(0, 0, 0, 0, 0, lines)
                 end
