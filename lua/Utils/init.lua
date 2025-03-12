@@ -1,11 +1,5 @@
 local M = {}
 
-local function len(T)
-    local count = 0
-    for _ in pairs(T) do count = count + 1 end
-    return count
-end
-
 --- @class AutoInsertDefinition
 local AutoInsertDefinition = {
     --- @type string
@@ -29,7 +23,7 @@ function M.setup(opts)
                 if vim.api.nvim_buf_get_text(args.buf, 0, 0, 0, 1, {})[1] == "" then
                     local lines = {}
                     for _, line in ipairs(def.value) do
-                        table.insert(lines, line)
+                        table.insert(lines, vim.fn.expandcmd(line))
                     end
                     vim.api.nvim_buf_set_text(0, 0, 0, 0, 0, lines)
                 end
